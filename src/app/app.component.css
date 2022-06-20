@@ -1,0 +1,110 @@
+.floatingCentro {
+  z-index: 99;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--accent-color);
+}
+
+.contenedor {
+  position: absolute;
+  top: 10px;
+  z-index: 99;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: .3em;
+  color: black;
+  margin-left: 10px;
+}
+
+.flotandoCentro {
+  position: absolute;
+  z-index: 99;
+  top: 17.5px;
+  right: 4.5em;
+}
+
+.floatingEnd {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 99;
+}
+
+.aligned {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 1em;
+}
+
+.alignedEnd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.errored {
+  color: var(--warn-color);
+}
+
+.backWarn {
+  color: white;
+  background-color: var(--warn-color);
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.backErrored {
+  color: white;
+  background-color: var(--warn-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.backOk {
+  color: black;
+  background-color: var(--accent-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.backProcessing {
+  color: black;
+  background-color: var(--accent-color);
+  padding: 10px;
+  border-radius: 10px;
+  animation: colorAnimation 2s infinite 1s alternate;
+}
+
+@keyframes colorAnimation {
+  0% {
+    background-color: var(--accent-color);
+    color: black;
+  }
+
+  100% {
+    background-color: var(--primary-color);
+    color: white;
+  }
+}
+
+
+router-outlet {
+  z-index: -1;
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .omitible {
+    display: none;
+  }
+
+}

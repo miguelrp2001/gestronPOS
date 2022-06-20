@@ -1,0 +1,10 @@
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-progress-bar [mode]="modoLoading" [value]=progress class="floatingLoading"></mat-progress-bar>
+    <img src="assets/logo.png" alt="Gestrón logo">
+    <strong class="floatingInfoCard" *ngIf="!error">{{ status }}</strong>
+    <strong class="floatingInfoCard errored" *ngIf="error">{{ status }}</strong>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

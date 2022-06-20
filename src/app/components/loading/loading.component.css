@@ -1,0 +1,89 @@
+mat-sidenav-container{
+    height: 100%;
+}
+
+
+mat-sidenav-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  img {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .floatingSpinner{
+    position: absolute;
+    top: 75%;
+    z-index: 1;
+  }
+
+  .floatingLoading{
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .floatingInfoCard{
+    position: absolute;
+    top: 85%;
+    z-index: 1;
+  }
+
+  .floatingCentro{
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1em;
+    width: 100%;
+  }
+
+  .floatingEnd{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1em;
+  }
+
+  .aligned {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1em;
+    margin-left: 1em;
+  }
+
+  .alignedEnd {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1em;
+    justify-self: flex-end;
+  }
+
+  .errored {
+    color: var(--warn-color);
+  }
+
+  .backErrored {
+    color: white;
+    background-color: var(--warn-color);
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .separador {
+    flex: 1 1 auto;
+  }

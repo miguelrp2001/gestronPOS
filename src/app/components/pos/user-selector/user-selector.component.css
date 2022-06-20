@@ -1,0 +1,29 @@
+.botonesUsuarios {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+div {
+  padding: 1em;
+}
+
+.botonesUsuarios>button {
+  width: 7em;
+  height: 7em;
+}
+
+@media screen and (max-width: 600px) {
+  .botonesUsuarios {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 349px) {
+  .botonesUsuarios {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Se requiere configuración</h1>
+<div mat-dialog-content>
+  <p>Debe introducir un token de punto de venta para continuar.</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Token</mat-label>
+    <input matInput cdkFocusInitial required [(ngModel)]="token">
+    <mat-icon matPrefix>key</mat-icon>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary" [mat-dialog-close]="token">Continuar</button>
+</div>
