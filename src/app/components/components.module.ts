@@ -9,6 +9,9 @@ import { UserSelectorComponent } from './pos/user-selector/user-selector.compone
 import { UserPasswordPromptComponent } from './pos/dialog/user-password-prompt/user-password-prompt.component';
 import { TicketSelectorComponent } from './pos/ticket-selector/ticket-selector.component';
 import { RouterModule } from '@angular/router';
+import { TicketEditorComponent } from './pos/ticket-editor/ticket-editor.component';
+import { VisorTicketComponent } from './pos/ticketEditorUi/visor-ticket/visor-ticket.component';
+import { SelectorArticulosComponent } from './pos/ticketEditorUi/selector-articulos/selector-articulos.component';
 
 
 
@@ -19,7 +22,10 @@ import { RouterModule } from '@angular/router';
     PosDashComponent,
     UserSelectorComponent,
     UserPasswordPromptComponent,
-    TicketSelectorComponent
+    TicketSelectorComponent,
+    TicketEditorComponent,
+    VisorTicketComponent,
+    SelectorArticulosComponent
   ],
   imports: [
     CommonModule,

@@ -25,25 +25,28 @@ export class UserSelectorComponent implements OnInit {
   }
 
   selectUser(user: Perfil) {
-    let paswwordDialog = this.dialog.open(UserPasswordPromptComponent, {
-      data: user
-    });
+    if (this.appservice.getUser().id != user.id) {
+      let paswwordDialog = this.dialog.open(UserPasswordPromptComponent, {
+        data: user
+      });
 
-    paswwordDialog.afterClosed().subscribe((perfil: Perfil) => {
-      if (perfil) {
-        this.apiservice.authPerfil(perfil).subscribe((r: GestronRequest) => {
-          if (r.status == "ok") {
-            this.appservice.setUser(perfil);
-            delete perfil.clave;
-            this.snackbar.open("Bienvenido " + perfil.nombre, "", { duration: 2000, verticalPosition: "top" });
-            this.router.navigate(["/pos/tickets"]);
-          }
-        }, (err) => {
-          delete perfil.clave;
-          this.snackbar.open("Autenticación fallida", "", { duration: 2000 });
-        })
+      paswwordDialog.afterClosed().subscribe((perfil: Perfil) => {
+        if (perfil) {
+          this.apiservice.authPerfil(perfil).subscribe((r: GestronRequest) => {
+            if (r.status == "ok") {
+              this.appservice.setUser(perfil);
+              this.snackbar.open("Bienvenido " + perfil.nombre, "", { duration: 2000, verticalPosition: "bottom", horizontalPosition: "right" });
+              this.router.navigate(["/pos/tickets"]);
+            }
+          }, (err) => {
+            this.snackbar.open("Autenticación fallida", "", { duration: 2000 });
+          })
+        }
+        delete user.clave;
       }
+      );
+    } else {
+      this.router.navigate(["/pos/tickets"]);
     }
-    );
   }
 }

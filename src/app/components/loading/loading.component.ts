@@ -24,6 +24,7 @@ export class LoadingComponent implements OnInit {
   progress: number = 0;
 
   load() {
+    this.appservice.setLoaded(false);
     this.error = false;
     this.status = "Cargando datos...";
     this.modoLoading = "determinate";
@@ -57,7 +58,11 @@ export class LoadingComponent implements OnInit {
                           this.status = "Preparando pantalla...";
                           this.progress = 100;
                           this.appservice.setLoaded(true);
-                          this.router.navigate(['/pos']);
+                          if (this.appservice.getUser().id) {
+                            this.router.navigate(['/pos/tickets']);
+                          } else {
+                            this.router.navigate(['/pos']);
+                          }
                         }, (error: any) => {
                           this.error = true;
                           this.status = "Error al cargar perfiles";

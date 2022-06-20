@@ -19,6 +19,8 @@ export interface Data {
   articulos?: Articulo[];
   impuesto?: Impuesto;
   impuestos?: Impuesto[];
+  ticket?: Ticket;
+  tickets?: Ticket[];
 }
 
 
@@ -103,10 +105,20 @@ export interface Ticket {
   id: number;
   cliente_id?: number;
   cliente?: Cliente;
-  trabajador_id: number;
-  trabajador: Perfil;
+  trabajador_id?: number;
+  trabajador?: Perfil;
   estado: string;
   tipo: string;
+  items: Linea[];
   updated_at?: Date;
   created_at?: Date;
+}
+
+export interface Linea {
+  id: number;
+  estado: string;
+  ticket_id?: number;
+  trabajador_id?: number;
+  precio_id: number;
+  precio: number;
 }

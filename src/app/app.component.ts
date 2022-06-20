@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AppService } from './services/app.service';
 import { Centro, Perfil } from './interfaces/interfaces';
 import { Router } from '@angular/router';
+import { TicketService } from './services/ticket.service';
+
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'gestronPOS';
 
-  constructor(private appservice: AppService, private router: Router) { }
+  constructor(private appservice: AppService, private router: Router, private ticketservice: TicketService) { }
 
   getCentroActivo(): Centro {
     return this.appservice.getCentro();
@@ -36,5 +38,24 @@ export class AppComponent {
   logoutUser() {
     this.appservice.logoutUser();
     this.router.navigate(['/pos']);
+  }
+
+  enTicket(): boolean {
+    return this.router.url.includes('/pos/tickets/');
+  }
+
+  nuevoTicket() {
+    this.router.navigate(['/pos/tickets/nuevo']);
+  }
+
+  uploadTicket() {
+  }
+
+  discardTicket() {
+    this.router.navigate(['/pos/tickets']);
+  }
+
+  isLoaded() {
+    return this.appservice.isLoaded();
   }
 }

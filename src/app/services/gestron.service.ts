@@ -36,4 +36,8 @@ export class GestronService {
   authPerfil(perfil: Perfil): Observable<GestronRequest> {
     return this.http.post<GestronRequest>(BACKEND + 'perfil/auth', perfil);
   }
+
+  getTickets(): Observable<GestronRequest> {
+    return this.http.get<GestronRequest>(BACKEND + 'tickets');
+  }
 }

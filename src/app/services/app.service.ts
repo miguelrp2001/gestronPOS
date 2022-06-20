@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
 import { EncryptStorage } from 'storage-encryption';
 import { SECRET_KEY } from './config.constants';
-import { Cliente, Familia, Articulo, Centro, Precio, Perfil, Ticket } from '../interfaces/interfaces';
+import { Cliente, Familia, Articulo, Centro, Precio, Perfil, Ticket, GestronRequest } from '../interfaces/interfaces';
+import { GestronService } from './gestron.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor() {
+  constructor(private apiservice: GestronService) {
     this.token = this.storageGet('token');
     if (this.token) {
       this.logedIn = true;
     }
 
+    this.user = this.storageGet('user');
+    if (!this.user) {
+      this.user = {} as Perfil;
+    }
+    this.loaded = false;
     setInterval(() => {
       this.now = new Date();
+
     }, 1);
+
   }
 
   private now: Date = new Date();
@@ -117,10 +125,12 @@ export class AppService {
 
   public setUser(user: Perfil) {
     this.user = user;
+    this.storageSet('user', user);
   }
 
   public logoutUser() {
     this.user = {} as Perfil;
+    this.storageClear('user');
   }
 
   // Token de autenticación
@@ -157,7 +167,5 @@ export class AppService {
     this.token = "";
     this.logedIn = false;
   }
-
-  private tickets: Ticket[] = [];
 
 }

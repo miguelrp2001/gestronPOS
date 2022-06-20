@@ -1,14 +1,14 @@
-<div matTooltip="Sin conexión con el servidor" matTooltipPosition="left" matTooltipHideDelay="100"
+<div matTooltip="Sin conexión con el servidor" matTooltipPosition="below" matTooltipHideDelay="100"
   title="Sin conexión con el servidor" class="alignedEnd backErrored floatingEnd" *ngIf="errorDeConexion()">
   <mat-icon>cloud_off</mat-icon>
 </div>
-<div matTooltip="Datos actualizados" matTooltipPosition="left" matTooltipHideDelay="100" title="Datos actualizados"
+<div matTooltip="Datos actualizados" matTooltipPosition="below" matTooltipHideDelay="100" title="Datos actualizados"
   class="alignedEnd backOk floatingEnd centered" *ngIf="!errorDeConexion() && synced()">
   <mat-icon>cloud</mat-icon>
 </div>
-<div matTooltip="Actualizando datos" matTooltipPosition="left" matTooltipHideDelay="100" title="Actualizando datos"
+<div matTooltip="Actualizando datos" matTooltipPosition="below" matTooltipHideDelay="100" title="Actualizando datos"
   class="alignedEnd backOk floatingEnd centered" *ngIf="!errorDeConexion() && !synced()">
-  <mat-icon>cloud</mat-icon>
+  <mat-icon class="rotating">sync</mat-icon>
 </div>
 <mat-spinner *ngIf="!errorDeConexion() && !synced()" class="flotandoCentro" color="accent" diameter="29"></mat-spinner>
 
@@ -22,18 +22,37 @@
       <mat-icon>calendar_today</mat-icon><strong> {{getRealTime().toLocaleDateString()}}
       </strong>
     </div>
-    <div class="aligned" *ngIf="getCentroActivo().nombre">
+    <div class="aligned omitible" *ngIf="getCentroActivo().nombre">
       <mat-icon>business</mat-icon><strong> {{getCentroActivo().nombre}}
       </strong>
     </div>
-    <div class="aligned" *ngIf="getUsuarioActivo().nombre">
+    <div class="aligned" *ngIf="getUsuarioActivo().nombre && isLoaded()">
       <mat-icon>person</mat-icon><strong> {{getUsuarioActivo().nombre}}
       </strong>
     </div>
   </div>
-  <div class="backWarn" *ngIf="getUsuarioActivo().nombre">
-    <button mat-icon-button (click)="logoutUser()">
+  <div class="backWarn" *ngIf="getUsuarioActivo().nombre && isLoaded() && !enTicket()">
+    <button mat-icon-button (click)="logoutUser()" matTooltip="Salir" matTooltipPosition="below"
+      matTooltipHideDelay="100" title="Salir">
       <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+  <div class="backPrimary" *ngIf="getUsuarioActivo().nombre && !enTicket()  && isLoaded()">
+    <button mat-icon-button (click)="nuevoTicket()" matTooltip="Nuevo ticket" matTooltipPosition="below"
+      matTooltipHideDelay="100" title="Nuevo ticket">
+      <mat-icon>note_add</mat-icon>
+    </button>
+  </div>
+  <div class="backPrimary" *ngIf="getUsuarioActivo().nombre && enTicket()  && isLoaded()">
+    <button mat-icon-button (click)="uploadTicket()" matTooltip="Guardar ticket" matTooltipPosition="below"
+      matTooltipHideDelay="100" title="Guardar ticket">
+      <mat-icon>file_upload</mat-icon>
+    </button>
+  </div>
+  <div class="backWarn" *ngIf="getUsuarioActivo().nombre && enTicket()  && isLoaded()">
+    <button mat-icon-button (click)="discardTicket()" matTooltip="Descartar ticket" matTooltipPosition="below"
+      matTooltipHideDelay="100" title="Descartar ticket">
+      <mat-icon>close</mat-icon>
     </button>
   </div>
 </div>

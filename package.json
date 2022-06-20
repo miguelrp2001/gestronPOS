@@ -24,6 +24,7 @@
     "@ionic/angular-toolkit": "^6.1.0",
     "@schematics/angular": "^9.1.0",
     "jsonc-parser": "^3.0.0",
+    "ng-swipe-item": "^1.0.5",
     "rxjs": "~7.4.0",
     "storage-encryption": "^1.0.16",
     "tslib": "^2.3.0",

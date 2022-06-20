@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Artículos</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-tab-group>
+      <mat-tab *ngFor="let familia of getFamilias()" [label]="familia.nombre">
+        <mat-grid-list cols="4" rowHeight="1:1" gutterSize="1em">
+          <mat-grid-tile *ngFor="let precio of getArticulos(familia.id)">
+            <button mat-flat-button color="accent" class="button">{{precio.articulo.nombre_corto}}</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+    </mat-tab-group>
+
+
+  </mat-card-content>
+</mat-card>

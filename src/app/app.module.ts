@@ -29,7 +29,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
       registrationStrategy: 'registerWhenStable:30000'
     }),
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     [{
