@@ -1,1 +1,20 @@
-<p>visor-ticket works!</p>
+<mat-card>
+  <p># {{(ticket.id === 0)?"Nuevo Ticket": ticket.id}}</p>
+  <p *ngIf="ticket.cliente">Cliente: {{ticket.cliente}}</p>
+  <hr>
+  <div class="visor" #divitems>
+    <div *ngFor="let item of ticket.items" class="articulo">
+      <div class="articuloIn">
+        <strong>{{precio(item.precio_id).articulo.nombre}}</strong>
+        <p>{{precio(item.precio_id).precio}} €</p>
+      </div>
+      <button mat-icon-button class="deleteLinea" (click)="borrar(item)" color="warn">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+    <hr>
+    <strong class="alignRight">Total: {{total()}}</strong>
+    <hr>
+    <strong class="alignRight cWhite"> .</strong>
+  </div>
+</mat-card>

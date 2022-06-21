@@ -45,10 +45,12 @@ export class AppComponent {
   }
 
   nuevoTicket() {
+    this.ticketservice.newTicket();
     this.router.navigate(['/pos/tickets/nuevo']);
   }
 
   uploadTicket() {
+    this.ticketservice.saveTicket();
   }
 
   discardTicket() {

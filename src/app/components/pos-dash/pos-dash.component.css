@@ -6,8 +6,6 @@ mat-sidenav-container {
 
 mat-sidenav-content {
   height: 100%;
-
-
 }
 
 ::-webkit-scrollbar {

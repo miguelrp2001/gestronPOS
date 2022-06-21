@@ -1,0 +1,77 @@
+mat-card {
+  background-color: white;
+  color: black;
+  height: 100%;
+
+}
+
+p {
+  margin-bottom: 0;
+}
+
+hr {
+  margin-top: 0;
+  margin-bottom: 0;
+  border: solid 1px black;
+  background-color: black;
+  border-radius: 10px;
+}
+
+div.visor {
+  overflow-y: scroll;
+  max-height: 17em;
+  height: 17em;
+}
+
+.alignRight {
+  text-align: right;
+  width: 100%;
+  display: block;
+  font-size: 1.3em;
+  margin-top: .3em;
+  margin-bottom: .3em;
+}
+
+.cWhite {
+  color: white;
+  font-size: 3em;
+}
+
+div.visor::-webkit-scrollbar {
+  width: 3px;
+  position: sticky;
+  border-radius: 10px;
+}
+
+div.visor::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+div.visor::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #323232;
+}
+
+div.visor::-webkit-scrollbar-thumb:hover {
+  background: #414141;
+}
+
+.articulo {
+  border-bottom: solid 1px grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+}
+
+.articuloIn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.articuloIn>p {
+  font-weight: bold;
+  font-size: large;
+}

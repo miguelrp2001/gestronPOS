@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { TicketEditorComponent } from './pos/ticket-editor/ticket-editor.component';
 import { VisorTicketComponent } from './pos/ticketEditorUi/visor-ticket/visor-ticket.component';
 import { SelectorArticulosComponent } from './pos/ticketEditorUi/selector-articulos/selector-articulos.component';
+import { BotonArticuloComponent } from './pos/ticketEditorUi/boton-articulo/boton-articulo.component';
 
 
 
@@ -25,7 +26,8 @@ import { SelectorArticulosComponent } from './pos/ticketEditorUi/selector-articu
     TicketSelectorComponent,
     TicketEditorComponent,
     VisorTicketComponent,
-    SelectorArticulosComponent
+    SelectorArticulosComponent,
+    BotonArticuloComponent
   ],
   imports: [
     CommonModule,

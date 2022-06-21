@@ -20,14 +20,24 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const accessToken = this.appService.getToken();
+    const userLogin = this.appService.getUser().id;
     if (request.url.includes(APIIP) && request.url.includes('api') && accessToken) {
       this.appService.setSynced(false);
       request = request.clone({
         withCredentials: true,
         setHeaders: {
-          Token: accessToken
+          Token: accessToken,
         }
       });
+      if (userLogin) {
+        request = request.clone({
+          withCredentials: true,
+          setHeaders: {
+            Token: accessToken,
+            trabajador: userLogin + ""
+          }
+        });
+      }
     }
     return next.handle(request).pipe(tap((r) => {
       if (r.type === 4) {
@@ -36,17 +46,17 @@ export class AuthInterceptor implements HttpInterceptor {
     }, (requestError: HttpErrorResponse) => {
       this.appService.setSynced(true);
       if (request.url.includes('api') && !request.url.includes('auth') && requestError && requestError.status === 401) {
-        let snackBarRef = this.snackBar.open('El token no es válido.', 'Volver a introducir', { duration: 1000000, verticalPosition: 'top' });
+        let snackBarRef = this.snackBar.open('El token no es válido.', 'Volver a introducir', { duration: 1000000, verticalPosition: 'bottom' });
         snackBarRef.onAction().subscribe(() => {
           this.appService.logout();
           window.location.reload();
         }
         );
       } else if ((request.url.includes('api') && !request.url.includes('auth') && requestError && requestError.status === 403)) {
-        let snackBarRef = this.snackBar.open('No está autorizado para realizar esta acción.', '', { duration: 5000, verticalPosition: 'top' });
+        let snackBarRef = this.snackBar.open('No está autorizado para realizar esta acción.', '', { duration: 5000, verticalPosition: 'bottom' });
         this.router.navigate(['/'])
       } else if ((request.url.includes('api') && !request.url.includes('auth') && requestError && requestError.status === 0)) {
-        let snackBarRef = this.snackBar.open('No se pudo conectar con el servidor.', 'Recargar', { duration: 5000000, verticalPosition: 'top' });
+        let snackBarRef = this.snackBar.open('No se pudo conectar con el servidor.', 'Recargar', { duration: 5000000, verticalPosition: 'bottom' });
         this.appService.setErrorConexion(true);
         snackBarRef.onAction().subscribe(() => {
           window.location.reload();

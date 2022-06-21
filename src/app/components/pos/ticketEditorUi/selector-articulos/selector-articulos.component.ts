@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AppService } from '../../../../services/app.service';
+import { Precio } from '../../../../interfaces/interfaces';
 
 @Component({
   selector: 'app-selector-articulos',
@@ -7,6 +8,8 @@ import { AppService } from '../../../../services/app.service';
   styleUrls: ['./selector-articulos.component.css']
 })
 export class SelectorArticulosComponent implements OnInit {
+
+  @Output() articuloMarcado = new EventEmitter<Precio>();
 
   constructor(private appservice: AppService) { }
 
@@ -21,6 +24,10 @@ export class SelectorArticulosComponent implements OnInit {
 
   getFamilias() {
     return this.appservice.getFamilias();
+  }
+
+  addArticulo(precio: Precio) {
+    this.articuloMarcado.emit(precio);
   }
 
 }

@@ -1,2 +1,4 @@
-<app-visor-ticket></app-visor-ticket>
-<app-selector-articulos></app-selector-articulos>
+<div class="base">
+  <app-visor-ticket id="ticket" [ticket]="ticket()" (onBorrar)="borrar($event)"></app-visor-ticket>
+  <app-selector-articulos id="selector" (articuloMarcado)="articuloMarcado($event)"></app-selector-articulos>
+</div>
