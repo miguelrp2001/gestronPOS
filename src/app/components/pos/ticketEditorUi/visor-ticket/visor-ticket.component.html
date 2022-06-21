@@ -4,16 +4,25 @@
   <hr>
   <div class="visor" #divitems>
     <div *ngFor="let item of ticket.items" class="articulo">
-      <div class="articuloIn">
+      <span class="enviado" *ngIf="item.id != 0"></span>
+      <span class="noenviado" *ngIf="item.id == 0"></span>
+      <div class="articuloIn" *ngIf="item.estado == 'a'">
         <strong>{{precio(item.precio_id).articulo.nombre}}</strong>
         <p>{{precio(item.precio_id).precio}} €</p>
       </div>
-      <button mat-icon-button class="deleteLinea" (click)="borrar(item)" color="warn">
+      <div class="articuloIn" *ngIf="item.estado == 'c'">
+        <strong class="anulado">{{precio(item.precio_id).articulo.nombre}}</strong>
+        <p class="anulado">{{precio(item.precio_id).precio}} €</p>
+      </div>
+      <button mat-icon-button class="deleteLinea" (click)="borrar(item)" color="warn" *ngIf="item.estado == 'a'">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button mat-icon-button class="deleteLinea" disabled color="warn" *ngIf="item.estado == 'c'">
         <mat-icon>clear</mat-icon>
       </button>
     </div>
     <hr>
-    <strong class="alignRight">Total: {{total()}}</strong>
+    <strong class=" alignRight">Total: {{total()}}</strong>
     <hr>
     <strong class="alignRight cWhite"> .</strong>
   </div>

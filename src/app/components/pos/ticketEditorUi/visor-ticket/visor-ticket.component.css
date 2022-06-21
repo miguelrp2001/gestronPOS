@@ -2,11 +2,32 @@ mat-card {
   background-color: white;
   color: black;
   height: 100%;
-
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 p {
   margin-bottom: 0;
+}
+
+.enviado::before {
+  content: ".";
+  color: var(--primary-color);
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  display: inline-block;
+  margin-right: .5em;
+}
+
+.noenviado::before {
+  content: ".";
+  color: white;
+  background-color: white;
+  border-radius: 10px;
+  display: inline-block;
+  margin-right: .5em;
 }
 
 hr {
@@ -23,6 +44,11 @@ div.visor {
   height: 17em;
 }
 
+.anulado {
+  color: var(--warn-color);
+  text-decoration: line-through;
+}
+
 .alignRight {
   text-align: right;
   width: 100%;
@@ -35,6 +61,10 @@ div.visor {
 .cWhite {
   color: white;
   font-size: 3em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 div.visor::-webkit-scrollbar {

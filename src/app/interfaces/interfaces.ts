@@ -121,4 +121,5 @@ export interface Linea {
   trabajador_id?: number;
   precio_id: number;
   precio: number;
+  update?: boolean;
 }

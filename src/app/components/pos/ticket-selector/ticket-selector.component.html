@@ -1,1 +1,4 @@
-<p>ticket-selector works!</p>
+<div *ngFor="let ticket of tickets()" (click)="openTicket(ticket)">
+  {{ticket.id}}
+  {{total(ticket.items)}}
+</div>

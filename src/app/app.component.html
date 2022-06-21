@@ -3,10 +3,12 @@
     title="Sin conexión con el servidor" class="alignedEnd backErrored floatingEnd" *ngIf="errorDeConexion()">
     <mat-icon>cloud_off</mat-icon>
   </div>
+
   <div matTooltip="Datos actualizados" matTooltipPosition="below" matTooltipHideDelay="100" title="Datos actualizados"
     class="alignedEnd backOk floatingEnd centered" *ngIf="!errorDeConexion() && synced()">
     <mat-icon>cloud</mat-icon>
   </div>
+
   <div matTooltip="Actualizando datos" matTooltipPosition="below" matTooltipHideDelay="100" title="Actualizando datos"
     class="alignedEnd backOk floatingEnd centered" *ngIf="!errorDeConexion() && !synced()">
     <mat-icon class="rotating">sync</mat-icon>

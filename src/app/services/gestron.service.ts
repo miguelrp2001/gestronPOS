@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GestronRequest, Perfil, Ticket } from '../interfaces/interfaces';
+import { GestronRequest, Perfil, Ticket, Linea } from '../interfaces/interfaces';
 import { APIURL } from './config.constants';
 
 const BACKEND = APIURL + '/api/pos/';
@@ -43,5 +43,9 @@ export class GestronService {
 
   saveTicket(ticket: Ticket): Observable<GestronRequest> {
     return this.http.post<GestronRequest>(BACKEND + 'ticket', ticket);
+  }
+
+  updateTicket(ticket: Ticket, items: Linea[]): Observable<GestronRequest> {
+    return this.http.put<GestronRequest>(BACKEND + 'ticket/' + ticket.id, { cliente_id: ticket.cliente_id, items: items });
   }
 }

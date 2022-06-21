@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TicketService } from '../../../services/ticket.service';
+import { Ticket, Linea } from '../../../interfaces/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-selector',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketSelectorComponent implements OnInit {
 
-  constructor() { }
+  tickets(): Ticket[] {
+    return this.ticketservice.getTickets();
+  }
+
+  total(items: Linea[]): number {
+    return items.reduce((total, item) => total + ((item.estado == "a") ? item.precio : 0), 0);
+  }
+
+  constructor(private ticketservice: TicketService, private router: Router) { }
 
   ngOnInit(): void {
+    this.ticketservice.updateTickets();
+  }
+
+  openTicket(ticket: Ticket) {
+    this.ticketservice.updateTickets();
+    this.router.navigate(['/pos/tickets/', ticket.id]);
   }
 
 }

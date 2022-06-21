@@ -28,11 +28,11 @@ export class AppComponent {
   }
 
   errorDeConexion(): boolean {
-    return this.appservice.getErrorConexion();
+    return (this.appservice.getErrorConexion()) ? true : false;
   }
 
   synced(): boolean {
-    return this.appservice.getSynced();
+    return (this.appservice.getSynced()) ? true : false;
   }
 
   logoutUser() {
@@ -55,6 +55,7 @@ export class AppComponent {
 
   discardTicket() {
     this.router.navigate(['/pos/tickets']);
+    this.ticketservice.newTicket();
   }
 
   isLoaded() {
