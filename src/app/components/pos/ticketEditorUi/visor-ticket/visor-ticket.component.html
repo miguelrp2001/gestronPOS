@@ -1,6 +1,7 @@
 <mat-card>
   <p># {{(ticket.id === 0)?"Nuevo Ticket": ticket.id}}</p>
-  <p *ngIf="ticket.cliente">Cliente: {{ticket.cliente}}</p>
+  <p *ngIf="ticket.cliente_id">Cliente: {{cliente(ticket.cliente_id||0).nombre}} ({{cliente(ticket.cliente_id||0).nif}})
+  </p>
   <hr>
   <div class="visor" #divitems>
     <div *ngFor="let item of ticket.items" class="articulo">

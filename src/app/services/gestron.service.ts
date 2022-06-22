@@ -48,4 +48,8 @@ export class GestronService {
   updateTicket(ticket: Ticket, items: Linea[]): Observable<GestronRequest> {
     return this.http.put<GestronRequest>(BACKEND + 'ticket/' + ticket.id, { cliente_id: ticket.cliente_id, items: items });
   }
+
+  annulTicket(ticket: Ticket): Observable<GestronRequest> {
+    return this.http.delete<GestronRequest>(BACKEND + 'ticket/' + ticket.id, {});
+  }
 }

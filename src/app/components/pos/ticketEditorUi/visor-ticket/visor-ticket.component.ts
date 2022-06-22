@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, DoCheck, IterableDiffers, Output, EventEmitter, OnInit } from '@angular/core';
-import { Ticket, Precio, Linea } from '../../../../interfaces/interfaces';
+import { Ticket, Precio, Linea, Cliente } from '../../../../interfaces/interfaces';
 import { AppService } from '../../../../services/app.service';
 import { Observable, of, OperatorFunction } from 'rxjs';
 
@@ -25,6 +25,10 @@ export class VisorTicketComponent implements DoCheck, OnInit {
 
   precio(precio: number) {
     return (this.precios.find(p => p.id == precio) || {} as Precio);
+  }
+
+  cliente(cliente_id: number): Cliente {
+    return (this.appservice.getClientes().find(c => c.id == cliente_id) || {} as Cliente);
   }
 
   ngDoCheck(): void {

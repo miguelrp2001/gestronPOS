@@ -86,6 +86,16 @@ export class TicketService {
     console.log('NuevoTicket');
   }
 
+
+  public annulTicket() {
+    this.apiservice.annulTicket(this.ticket).subscribe((r: GestronRequest) => {
+      console.log(r);
+      this.updateTickets();
+      this.router.navigate(['/pos/tickets']);
+      this.newTicket();
+    });
+  }
+
   public saveTicket() {
     if (this.ticket.id == 0) {
       if (this.ticket.items.length < 1) {

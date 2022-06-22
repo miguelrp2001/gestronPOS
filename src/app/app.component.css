@@ -62,6 +62,13 @@
   border-radius: 10px;
 }
 
+.backAccent {
+  color: black;
+  background-color: var(--accent-color);
+  padding: 2px;
+  border-radius: 10px;
+}
+
 .backPrimary {
   color: white;
   background-color: var(--primary-color);

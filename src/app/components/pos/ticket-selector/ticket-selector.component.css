@@ -1,0 +1,22 @@
+.ticket {
+  width: 7em;
+  height: 7em;
+
+  border-radius: 10px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  padding-left: 1em;
+  padding-right: 1em;
+}

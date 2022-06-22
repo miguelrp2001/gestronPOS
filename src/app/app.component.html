@@ -60,6 +60,20 @@
         <mat-icon>close</mat-icon>
       </button>
     </div>
+    <div class="backAccent" *ngIf="getUsuarioActivo().nombre && enTicket()  && isLoaded()">
+      <button mat-icon-button [mat-menu-trigger-for]="opcionesTicket" matTooltip="Opciones" matTooltipPosition="below"
+        matTooltipHideDelay="100" title="Opciones">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <mat-menu #opcionesTicket>
+      <button mat-menu-item (click)="annadirCliente()">
+        <mat-icon>person_add</mat-icon> Añadir cliente
+      </button>
+      <button mat-menu-item (click)="anularTicket()">
+        <mat-icon>delete_forever</mat-icon> Anular ticket
+      </button>
+    </mat-menu>
   </div>
 </div>
 

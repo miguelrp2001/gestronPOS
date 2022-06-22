@@ -53,6 +53,14 @@ export class AppComponent {
     this.ticketservice.saveTicket();
   }
 
+  annadirCliente() {
+
+  }
+
+  anularTicket() {
+    this.ticketservice.annulTicket();
+  }
+
   discardTicket() {
     this.router.navigate(['/pos/tickets']);
     this.ticketservice.newTicket();

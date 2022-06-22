@@ -1,4 +1,6 @@
-<div *ngFor="let ticket of tickets()" (click)="openTicket(ticket)">
-  {{ticket.id}}
-  {{total(ticket.items)}}
+<div class="contenedor">
+  <button mat-flat-button color="accent" class="ticket" *ngFor="let ticket of tickets()" (click)="openTicket(ticket)">
+    #{{ticket.id}} ({{total(ticket.items)}} €)
+  </button>
+
 </div>
