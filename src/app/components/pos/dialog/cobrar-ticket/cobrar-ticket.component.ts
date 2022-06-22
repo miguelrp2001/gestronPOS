@@ -77,8 +77,9 @@ export class CobrarTicketComponent implements OnInit {
   }
 
   finalizarCobro(cobros: Cobro[]) {
-    this.ticketservice.currentTicket().cobros = cobros;
     this.ticketservice.saveTicketPrint().subscribe((res: GestronRequest) => {
+      this.ticketservice.currentTicket().id = (res.data.ticket || {} as Ticket).id;
+      this.ticketservice.currentTicket().cobros = cobros;
       this.apiservice.cobrarTicket(this.ticketservice.currentTicket()).subscribe((res: GestronRequest) => {
         this.printservice.imprimirTicket();
         this.matdialogRef.close(true);
