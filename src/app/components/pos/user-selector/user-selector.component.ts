@@ -15,10 +15,12 @@ import { Router } from '@angular/router';
 export class UserSelectorComponent implements OnInit {
 
 
-  users: Perfil[] = [];
+
+  users(): Perfil[] {
+    return this.appservice.getPerfiles();
+  }
 
   constructor(private appservice: AppService, private apiservice: GestronService, private dialog: MatDialog, private snackbar: MatSnackBar, private router: Router) {
-    this.users = this.appservice.getPerfiles();
   }
 
   ngOnInit(): void {

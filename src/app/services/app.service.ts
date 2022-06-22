@@ -133,6 +133,20 @@ export class AppService {
     this.storageClear('user');
   }
 
+  public updateUsers() {
+    this.apiservice.getPerfiles().subscribe(
+      (data: GestronRequest) => {
+        this.setPerfiles(data.data.perfiles || []);
+      });
+  }
+
+  public updateClientes() {
+    this.apiservice.getClientes().subscribe(
+      (data: GestronRequest) => {
+        this.setClientes(data.data.clientes || []);
+      });
+  }
+
   // Token de autenticación
 
   private token: string = "";
@@ -166,6 +180,8 @@ export class AppService {
     this.storageClear('token');
     this.token = "";
     this.logedIn = false;
+
   }
+
 
 }

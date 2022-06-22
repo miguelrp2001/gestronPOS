@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Seleccione el nuevo precio</h1>
+<div mat-dialog-content>
+  <p>Seleccione el nuevo precio</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Clave</mat-label>
+    <input matInput cdkFocusInitial #precioinput required [(ngModel)]="precio.precio" (focus)="precioinput.select()"
+      (keyup)="enterdetector($event)" type="number" inputmode="numeric">
+    <mat-icon matPrefix>price_change</mat-icon>
+    <mat-icon matSuffix>euro</mat-icon>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary" [mat-dialog-close]="precio.precio">Aceptar</button>
+  <button mat-button color="warn" [mat-dialog-close]="precio.precio*-1">Devolución</button>
+
+</div>

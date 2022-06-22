@@ -54,7 +54,9 @@ export class AuthInterceptor implements HttpInterceptor {
         );
       } else if ((request.url.includes('api') && !request.url.includes('auth') && requestError && requestError.status === 403)) {
         let snackBarRef = this.snackBar.open('No está autorizado para realizar esta acción.', '', { duration: 5000, verticalPosition: 'bottom' });
-        this.router.navigate(['/'])
+        this.appService.logoutUser();
+        this.appService.updateUsers();
+        this.router.navigate(['/pos'])
       } else if ((request.url.includes('api') && !request.url.includes('auth') && requestError && requestError.status === 0)) {
         let snackBarRef = this.snackBar.open('No se pudo conectar con el servidor.', 'Recargar', { duration: 5000000, verticalPosition: 'bottom' });
         this.appService.setErrorConexion(true);

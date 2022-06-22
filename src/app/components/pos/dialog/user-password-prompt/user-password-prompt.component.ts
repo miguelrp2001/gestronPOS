@@ -14,4 +14,10 @@ export class UserPasswordPromptComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  enterdetector(event: any) {
+    if (event.key == "Enter") {
+      this.dialogRef.close(this.perfil);
+    }
+  }
 }

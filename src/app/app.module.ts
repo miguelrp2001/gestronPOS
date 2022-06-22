@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { MaterialModule } from './material/material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     }),
     MaterialModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     [{

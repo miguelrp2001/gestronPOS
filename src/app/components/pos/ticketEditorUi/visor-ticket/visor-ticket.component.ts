@@ -1,7 +1,8 @@
 import { Component, Input, ViewChild, DoCheck, IterableDiffers, Output, EventEmitter, OnInit } from '@angular/core';
 import { Ticket, Precio, Linea, Cliente } from '../../../../interfaces/interfaces';
 import { AppService } from '../../../../services/app.service';
-import { Observable, of, OperatorFunction } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { PriceChangerComponent } from '../../dialog/price-changer/price-changer.component';
 
 @Component({
   selector: 'app-visor-ticket',
@@ -18,7 +19,7 @@ export class VisorTicketComponent implements DoCheck, OnInit {
 
   differ: any;
 
-  constructor(private appservice: AppService, private differs: IterableDiffers) {
+  constructor(private appservice: AppService, private differs: IterableDiffers, private dialog: MatDialog) {
     this.differ = differs.find([]).create(undefined);
 
   }
@@ -36,6 +37,19 @@ export class VisorTicketComponent implements DoCheck, OnInit {
     if (change != null) {
       this.scroll();
     }
+  }
+
+  changePrice(item: Linea) {
+    let priceChgDialog = this.dialog.open(PriceChangerComponent, {
+      data: { precio: item.precio },
+    });
+
+    priceChgDialog.afterClosed().subscribe(precio => {
+      if (precio) {
+        item.precio = precio;
+        item.update = true;
+      }
+    });
   }
 
   total() {

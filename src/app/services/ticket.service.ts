@@ -4,13 +4,15 @@ import { GestronService } from './gestron.service';
 import { AppService } from './app.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientSelectorComponent } from '../components/pos/dialog/client-selector/client-selector.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
 
-  constructor(private apiservice: GestronService, private appservice: AppService, private router: Router, private snackbar: MatSnackBar) {
+  constructor(private apiservice: GestronService, private appservice: AppService, private router: Router, private snackbar: MatSnackBar, private dialog: MatDialog) {
 
     setInterval(() => {
       if (this.appservice.isLoaded() && this.ticket.id == 0) {
@@ -61,7 +63,6 @@ export class TicketService {
       update: true,
     } as Linea;
     this.ticket.items.push(lineaNueva);
-    console.log(this.ticket);
   }
 
   public borrarItem(item: Linea) {
@@ -83,13 +84,11 @@ export class TicketService {
       trabajador: this.appservice.getUser(),
       trabajador_id: this.appservice.getUser().id
     } as Ticket;
-    console.log('NuevoTicket');
   }
 
 
   public annulTicket() {
     this.apiservice.annulTicket(this.ticket).subscribe((r: GestronRequest) => {
-      console.log(r);
       this.updateTickets();
       this.router.navigate(['/pos/tickets']);
       this.newTicket();
@@ -106,7 +105,6 @@ export class TicketService {
         });
       } else {
         this.apiservice.saveTicket(this.ticket).subscribe((r: GestronRequest) => {
-          console.log(r);
           this.updateTickets();
           this.newTicket();
           this.router.navigate(['/pos/tickets']);
@@ -114,11 +112,33 @@ export class TicketService {
       }
     } else {
       this.apiservice.updateTicket(this.ticket, this.ticket.items.filter((i => i.update == true))).subscribe((r: GestronRequest) => {
-        console.log(r);
         this.updateTickets();
         this.router.navigate(['/pos/tickets']);
       });
     }
+
+  }
+
+  public annadirCliente() {
+    let dialogoCliente = this.dialog.open(ClientSelectorComponent, {
+      data: {
+        clientes: this.appservice.getClientes(),
+      }
+    });
+
+    dialogoCliente.afterClosed().subscribe((r: Cliente) => {
+      if (r) {
+        this.ticket.cliente = r;
+        this.ticket.cliente_id = r.id;
+      }
+    });
+  }
+
+  public imprimirTicket() {
+
+  }
+
+  public cobrarTicket() {
 
   }
 }

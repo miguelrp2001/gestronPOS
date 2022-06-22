@@ -29,7 +29,6 @@ export class TicketEditorComponent implements OnInit {
   }
 
   articuloMarcado(precio: Precio) {
-    console.log("Clicked: " + precio.articulo.nombre + "\nPrecio: " + precio.precio + "€" + "\nImpuesto: " + precio.impuesto.nombre + "\nBase imponible: " + (precio.precio / (1 + precio.impuesto.porcentaje / 100)) + "€");
     this.ticketService.addItem(precio);
   }
 }

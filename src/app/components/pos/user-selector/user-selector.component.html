@@ -2,7 +2,7 @@
   <h1>Seleccione un usuario:</h1>
 
   <div class="botonesUsuarios">
-    <button mat-raised-button color="accent" *ngFor="let user of users"
+    <button mat-raised-button color="accent" *ngFor="let user of users()"
       (click)="selectUser(user)">{{user.nombre}}</button>
   </div>
 </div>

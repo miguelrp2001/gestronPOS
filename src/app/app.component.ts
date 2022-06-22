@@ -54,7 +54,15 @@ export class AppComponent {
   }
 
   annadirCliente() {
+    this.ticketservice.annadirCliente();
+  }
 
+  cobrarTicket() {
+    this.ticketservice.cobrarTicket();
+  }
+
+  imprimirTicket() {
+    this.ticketservice.imprimirTicket();
   }
 
   anularTicket() {

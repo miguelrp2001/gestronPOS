@@ -9,14 +9,12 @@ div.base {
 }
 
 app-selector-articulos {
-  grid-area: selector;
   width: 100%;
   height: 95%;
 }
 
 
 app-visor-ticket {
-  grid-area: ticket;
   height: 100%;
   width: 100%;
 }
@@ -38,4 +36,22 @@ div.visor::-webkit-scrollbar-thumb {
 
 div.visor::-webkit-scrollbar-thumb:hover {
   background: #414141;
+}
+
+@media screen and (min-width: 800px) {
+  div.base {
+    justify-items: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  app-selector-articulos {
+    width: 40%;
+  }
+
+  app-visor-ticket {
+    width: 30em;
+  }
+
 }
