@@ -31,7 +31,7 @@ export class CobrarTicketComponent implements OnInit {
   }
 
   totalCompleto(): number {
-    return this.data.ticket.items.reduce((total, item) => total + ((item.estado == "a") ? this.precio(item.precio_id).precio : 0), 0);
+    return this.data.ticket.items.reduce((total, item) => total + ((item.estado == "a") ? item.precio : 0), 0);
   }
 
   totalCobrado(): number {

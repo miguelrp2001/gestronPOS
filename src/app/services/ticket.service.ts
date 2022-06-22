@@ -176,7 +176,9 @@ export class TicketService {
       });
 
       dialogoCobro.afterClosed().subscribe((a) => {
-        this.router.navigate(['/pos/tickets']);
+        if (a) {
+          this.router.navigate(['/pos/tickets']);
+        }
       });
     }
   }
