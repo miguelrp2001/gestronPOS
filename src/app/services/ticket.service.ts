@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Ticket, GestronRequest, Cliente, Precio, Linea } from '../interfaces/interfaces';
+import { Ticket, GestronRequest, Cliente, Precio, Linea, Cobro } from '../interfaces/interfaces';
 import { GestronService } from './gestron.service';
 import { AppService } from './app.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientSelectorComponent } from '../components/pos/dialog/client-selector/client-selector.component';
+import { CobrarTicketComponent } from '../components/pos/dialog/cobrar-ticket/cobrar-ticket.component';
+import { PrintingService } from './printing.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +53,10 @@ export class TicketService {
     return this.ticket;
   }
 
+  public currentTicket(): Ticket {
+    return this.ticket;
+  }
+
   public addCliente(cliente: Cliente) {
     this.ticket.cliente = cliente;
   }
@@ -88,11 +95,22 @@ export class TicketService {
 
 
   public annulTicket() {
-    this.apiservice.annulTicket(this.ticket).subscribe((r: GestronRequest) => {
-      this.updateTickets();
-      this.router.navigate(['/pos/tickets']);
-      this.newTicket();
-    });
+
+    if (this.ticket.items.length < 1 && this.ticket.id == 0) {
+      let snackNoItemd = this.snackbar.open('No se puede anular un ticket vacío', 'Salir sin anular', { duration: 5000 });
+
+      snackNoItemd.onAction().subscribe(() => {
+        this.router.navigate(['/pos/tickets']);
+      });
+
+    } else {
+
+      this.apiservice.annulTicket(this.ticket).subscribe((r: GestronRequest) => {
+        this.updateTickets();
+        this.router.navigate(['/pos/tickets']);
+        this.newTicket();
+      });
+    }
   }
 
   public saveTicket() {
@@ -116,7 +134,14 @@ export class TicketService {
         this.router.navigate(['/pos/tickets']);
       });
     }
+  }
 
+  public saveTicketPrint(): Observable<GestronRequest> {
+    if (this.ticket.id == 0) {
+      return this.apiservice.saveTicket(this.ticket)
+    } else {
+      return this.apiservice.updateTicket(this.ticket, this.ticket.items.filter((i => i.update == true)))
+    }
   }
 
   public annadirCliente() {
@@ -134,11 +159,25 @@ export class TicketService {
     });
   }
 
-  public imprimirTicket() {
-
-  }
-
   public cobrarTicket() {
+    if (this.ticket.items.length < 1) {
+      let snackNoItemd = this.snackbar.open('No se puede cobrar un ticket vacío', 'Salir sin cobrar', { duration: 5000 });
 
+      snackNoItemd.onAction().subscribe(() => {
+        this.router.navigate(['/pos/tickets']);
+      });
+    } else {
+      let dialogoCobro = this.dialog.open(CobrarTicketComponent, {
+        data: {
+          ticket: this.ticket,
+          formaspago: this.appservice.getFormasPago(),
+          precios: this.appservice.getPrecios(),
+        }
+      });
+
+      dialogoCobro.afterClosed().subscribe((a) => {
+        this.router.navigate(['/pos/tickets']);
+      });
+    }
   }
 }

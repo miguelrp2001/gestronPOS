@@ -1,6 +1,8 @@
 <div class="contenedor">
   <button mat-flat-button color="accent" class="ticket" *ngFor="let ticket of tickets()" (click)="openTicket(ticket)">
-    #{{ticket.id}} ({{total(ticket.items)}} €)
+    <div class="innerbtn">
+      <span>#{{ticket.id}} </span><span>({{total(ticket.items)}} €)</span>
+    </div>
   </button>
 
 </div>

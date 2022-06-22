@@ -1,0 +1,17 @@
+th {
+  text-align: left;
+}
+
+h5 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.alignCenter {
+  text-align: center;
+}

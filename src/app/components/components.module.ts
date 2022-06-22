@@ -16,6 +16,9 @@ import { ClientSelectorComponent } from './pos/dialog/client-selector/client-sel
 import { PriceChangerComponent } from './pos/dialog/price-changer/price-changer.component';
 import { AltaClienteComponent } from './pos/dialog/alta-cliente/alta-cliente.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TicketPrintComponent } from './pos/ticket-print/ticket-print.component';
+import { TicketPrintedComponent } from './pos/ticket-printed/ticket-printed.component';
+import { CobrarTicketComponent } from './pos/dialog/cobrar-ticket/cobrar-ticket.component';
 
 
 
@@ -33,7 +36,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BotonArticuloComponent,
     ClientSelectorComponent,
     PriceChangerComponent,
-    AltaClienteComponent
+    AltaClienteComponent,
+    TicketPrintComponent,
+    TicketPrintedComponent,
+    CobrarTicketComponent
   ],
   imports: [
     CommonModule,

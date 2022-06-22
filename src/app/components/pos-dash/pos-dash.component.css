@@ -27,3 +27,9 @@ mat-sidenav-content {
 ::-webkit-scrollbar-thumb:hover {
   background: #414141;
 }
+
+@media print {
+  * {
+    display: none;
+  }
+}

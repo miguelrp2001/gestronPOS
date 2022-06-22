@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <td>
+        <div class="header-space">&nbsp;</div>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="content">
+          <router-outlet></router-outlet>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>
+        <div class="footer-space">&nbsp;</div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<div class="header">
+  <h1>{{centro.nombre}}</h1>
+  <h2>{{centro.direccion}}</h2>
+  <h3>{{centro.nombre_legal}}</h3>
+  <h3>({{centro.nif}})</h3>
+</div>

@@ -21,6 +21,8 @@ export interface Data {
   impuestos?: Impuesto[];
   ticket?: Ticket;
   tickets?: Ticket[];
+  formapago?: FormaPago;
+  formaspago?: FormaPago[];
 }
 
 
@@ -110,6 +112,7 @@ export interface Ticket {
   estado: string;
   tipo: string;
   items: Linea[];
+  cobros?: Cobro[];
   updated_at?: Date;
   created_at?: Date;
 }
@@ -122,4 +125,19 @@ export interface Linea {
   precio_id: number;
   precio: number;
   update?: boolean;
+}
+
+export interface FormaPago {
+  id: number;
+  nombre: string;
+  icon: string;
+}
+
+export interface Cobro {
+  id: number;
+  ticket_id: number;
+  forma_pago_id: number;
+  cantidad: number;
+  updated_at?: Date;
+  created_at?: Date;
 }

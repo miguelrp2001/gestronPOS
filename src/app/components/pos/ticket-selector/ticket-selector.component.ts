@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class TicketSelectorComponent implements OnInit {
 
   tickets(): Ticket[] {
-    return this.ticketservice.getTickets();
+    return this.ticketservice.getTickets().filter(ticket => ticket.estado == "n");
   }
 
   total(items: Linea[]): number {

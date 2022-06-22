@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EncryptStorage } from 'storage-encryption';
 import { SECRET_KEY } from './config.constants';
-import { Cliente, Familia, Articulo, Centro, Precio, Perfil, Ticket, GestronRequest } from '../interfaces/interfaces';
+import { Cliente, Familia, Articulo, Centro, Precio, Perfil, Ticket, GestronRequest, FormaPago } from '../interfaces/interfaces';
 import { GestronService } from './gestron.service';
 
 @Injectable({
@@ -75,6 +75,7 @@ export class AppService {
   private familias: Familia[] = [];
   private clientes: Cliente[] = [];
   private prefiles: Perfil[] = [];
+  private formasPago: FormaPago[] = [];
   public getPrecios(): Precio[] {
     return this.precios;
   }
@@ -95,6 +96,9 @@ export class AppService {
     return this.prefiles;
   }
 
+  public getFormasPago(): FormaPago[] {
+    return this.formasPago;
+  }
 
   public setCentro(centro: Centro) {
     this.centro = centro;
@@ -116,6 +120,9 @@ export class AppService {
     this.prefiles = prefiles;
   }
 
+  public setFormasPago(formasPago: FormaPago[]) {
+    this.formasPago = formasPago;
+  }
 
   private user: Perfil = {} as Perfil;
 

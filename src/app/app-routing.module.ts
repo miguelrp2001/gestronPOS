@@ -7,6 +7,8 @@ import { TicketSelectorComponent } from './components/pos/ticket-selector/ticket
 import { UserSelectorComponent } from './components/pos/user-selector/user-selector.component';
 import { TicketEditorComponent } from './components/pos/ticket-editor/ticket-editor.component';
 import { PerfilAuthGuard } from './interfaces/perfil-auth.guard';
+import { TicketPrintComponent } from './components/pos/ticket-print/ticket-print.component';
+import { TicketPrintedComponent } from './components/pos/ticket-printed/ticket-printed.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "loading", pathMatch: "full" },
@@ -18,6 +20,11 @@ const routes: Routes = [
       { path: "tickets/:id", component: TicketEditorComponent }
     ]
   },
+  {
+    path: "print", component: TicketPrintComponent, outlet: "print", children: [
+      { path: "factura/:id", component: TicketPrintedComponent }
+    ]
+  }
 
 ];
 

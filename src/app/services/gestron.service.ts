@@ -56,4 +56,12 @@ export class GestronService {
   newCliente(cliente: Cliente): Observable<GestronRequest> {
     return this.http.post<GestronRequest>(BACKEND + 'cliente', cliente);
   }
+
+  getFormasPago(): Observable<GestronRequest> {
+    return this.http.get<GestronRequest>(BACKEND + 'formaspago');
+  }
+
+  cobrarTicket(ticket: Ticket): Observable<GestronRequest> {
+    return this.http.post<GestronRequest>(BACKEND + 'ticket/' + ticket.id + '/cobrar', ticket);
+  }
 }

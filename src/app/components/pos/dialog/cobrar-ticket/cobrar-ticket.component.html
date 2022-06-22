@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Cobrar ticket #{{data.ticket.id}}</h1>
+<div mat-dialog-content>
+  <div *ngFor="let cobro of todosCobros()" class="cobro">
+    <div class="inner">
+      <mat-icon>{{pillacobro(cobro.forma_pago_id).icon}}</mat-icon>
+      <strong>{{cobro.cantidad}}€</strong>
+    </div>
+    <button mat-icon-button (click)="borrarCobro(cobro)" color="warn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <div class="cobro">
+    <span>Restante:</span>
+    <span>{{totalRestante()}}€</span>
+  </div>
+  <mat-form-field appearance="outline" *ngIf="totalRestante() != 0">
+    <mat-label>Introduzca cantidad</mat-label>
+    <input matInput cdkFocusInitial #precioinput required [(ngModel)]="importe" (focus)="precioinput.select()"
+      type="number" inputmode="numeric">
+    <mat-icon matPrefix>price_change</mat-icon>
+    <mat-icon matSuffix>euro</mat-icon>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions *ngIf="totalRestante() != 0">
+  <button mat-button color="primary" isIconButton (click)="addCobro(formapago, importe)"
+    *ngFor="let formapago of data.formaspago">
+    <mat-icon>{{formapago.icon}}</mat-icon> {{formapago.nombre}}
+  </button>
+</div>
+<div mat-dialog-actions *ngIf="totalRestante() == 0">
+  <button mat-flat-button color="primary" class="todoancho" (click)="finalizarCobro(todosCobros())">Finalizar
+    cobro</button>
+</div>

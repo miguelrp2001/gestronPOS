@@ -131,6 +131,7 @@ router-outlet {
 
 
 
+
 @media screen and (max-width: 600px) {
   .omitible {
     display: none;
@@ -142,4 +143,10 @@ router-outlet {
     gap: .3em;
   }
 
+}
+
+@media print {
+  * {
+    display: none;
+  }
 }

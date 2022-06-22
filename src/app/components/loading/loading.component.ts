@@ -51,18 +51,26 @@ export class LoadingComponent implements OnInit {
                     (data: GestronRequest) => {
                       this.appservice.setClientes(data.data.clientes || []);
                       this.status = "Cargando perfiles...";
-                      this.progress = 97;
+                      this.progress = 90;
                       this.apiservice.getPerfiles().subscribe(
                         (data: GestronRequest) => {
                           this.appservice.setPerfiles(data.data.perfiles || []);
-                          this.status = "Preparando pantalla...";
-                          this.progress = 100;
-                          this.appservice.setLoaded(true);
-                          if (this.appservice.getUser().id) {
-                            this.router.navigate(['/pos/tickets']);
-                          } else {
-                            this.router.navigate(['/pos']);
-                          }
+                          this.status = "Cargando formas de pago...";
+                          this.progress = 97;
+                          this.apiservice.getFormasPago().subscribe((res: GestronRequest) => {
+                            this.appservice.setFormasPago(res.data.formaspago || []);
+                            this.status = "Preparando pantalla...";
+                            this.progress = 100;
+                            this.appservice.setLoaded(true);
+                            if (this.appservice.getUser().id) {
+                              this.router.navigate(['/pos/tickets']);
+                            } else {
+                              this.router.navigate(['/pos']);
+                            }
+                          }, (err) => {
+                            this.error = true;
+                            this.status = "Error al cargar formas de pago";
+                          });
                         }, (error: any) => {
                           this.error = true;
                           this.status = "Error al cargar perfiles";

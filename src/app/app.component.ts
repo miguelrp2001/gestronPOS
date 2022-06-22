@@ -3,6 +3,7 @@ import { AppService } from './services/app.service';
 import { Centro, Perfil } from './interfaces/interfaces';
 import { Router } from '@angular/router';
 import { TicketService } from './services/ticket.service';
+import { PrintingService } from './services/printing.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { TicketService } from './services/ticket.service';
 export class AppComponent {
   title = 'gestronPOS';
 
-  constructor(private appservice: AppService, private router: Router, private ticketservice: TicketService) { }
+  constructor(private appservice: AppService, private router: Router, private ticketservice: TicketService, private printingservice: PrintingService) { }
 
   getCentroActivo(): Centro {
     return this.appservice.getCentro();
@@ -62,7 +63,7 @@ export class AppComponent {
   }
 
   imprimirTicket() {
-    this.ticketservice.imprimirTicket();
+    this.printingservice.imprimirTicket();
   }
 
   anularTicket() {
