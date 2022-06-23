@@ -165,6 +165,7 @@ export class TicketService {
 
       snackNoItemd.onAction().subscribe(() => {
         this.router.navigate(['/pos/tickets']);
+        this.newTicket();
       });
     } else {
       let dialogoCobro = this.dialog.open(CobrarTicketComponent, {
